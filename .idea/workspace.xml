@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Added initial root POM and akka-actors POM">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_typesafe_akka_akka_actor_2_13_2_6_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_typesafe_config_1_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_dev_jna_jna_5_3_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jline_jline_3_16_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_modules_scala_java8_compat_2_13_0_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_compiler_2_13_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_reflect_2_13_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Added akka-actors dependency&#10;Other maven stuff">
       <change afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorsIntro.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/akka-actors/akka-actors.iml" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/akka-actors.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/akka-actors/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614991879188</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added akka-actors dependency&#10;Other maven stuff">
+      <created>1614993220057</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614993220057</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,6 +93,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added initial root POM and akka-actors POM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added initial root POM and akka-actors POM" />
+    <MESSAGE value="Added akka-actors dependency&#10;Other maven stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added akka-actors dependency&#10;Other maven stuff" />
   </component>
 </project>
