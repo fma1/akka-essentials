@@ -52,4 +52,83 @@ object ActorCapabilities extends App {
   // forwarding = sending a message with original sender
   case class WirelessPhoneMessage(contents: String, ref: ActorRef)
   alice ! WirelessPhoneMessage("Hi", bob)
+
+  // Exercises
+  final val INCREMENT = "INCREMENT"
+  final val DECREMENT = "DECREMENT"
+  final val PRINT = "PRINT"
+
+  class CounterActor extends Actor {
+    private val count = 0
+
+    override def receive: Receive = onMessage(count)
+
+    private def onMessage(count: Int): Receive = {
+      case INCREMENT =>
+        context.become(onMessage(count + 1))
+      case DECREMENT =>
+        context.become(onMessage(count - 1))
+      case PRINT =>
+        println(s"Current count: $count")
+    }
+  }
+
+  val counterActor = system.actorOf(Props[CounterActor], "counterActor")
+
+  counterActor ! INCREMENT
+  counterActor ! INCREMENT
+  counterActor ! INCREMENT
+  counterActor ! DECREMENT
+  counterActor ! PRINT
+
+  final val WITHDRAW = "WITHDRAW"
+  final val DEPOSIT = "DEPOSIT"
+  final val STATEMENT = "STATEMENT"
+
+  // Like Withdrawal | Deposit | Statement in Javascript
+  sealed trait BankActions
+  case class Withdrawal(amount: Int) extends BankActions
+  case class Deposit(amount: Int) extends BankActions
+  case object Statement extends BankActions
+
+  // TODO: Using Ints instead of Float/Double due to precision, should change in future to work like Floats
+  class BankActor extends Actor {
+    private val balance = 0
+
+    override def receive: Receive = onMessage(balance)
+
+    private def onMessage(balance: Int): Receive = {
+      case Withdrawal(amount) =>
+        if (amount > balance) {
+          context.sender ! s"Failed to withdraw $amount"
+        } else {
+          context.become(onMessage(balance + amount))
+          context.sender ! s"Succeeded withdrawing amount"
+        }
+      case Deposit(amount) =>
+        // TODO: Currently ignoring Int.MaxValue and overflow
+        context.become(onMessage(balance + amount))
+        context.sender ! s"Succeeded depositing $amount"
+      case Statement =>
+        println(s"Balance: $balance")
+    }
+  }
+
+  case class SendBankActions(lst: List[BankActions], actorRef: ActorRef)
+
+  class ForwardActor extends Actor {
+    override def receive: Receive = {
+      case SendBankActions(lst, actorRef) =>
+        lst.foreach(bankAction => actorRef ! bankAction)
+      case message: String => println(s"${context.self} I have received message \'$message\'")
+      case anything: AnyRef => println(anything)
+    }
+  }
+
+  val bankActor = system.actorOf(Props[CounterActor], "bankActor")
+  val forwardActor = system.actorOf(Props[CounterActor], "forwardActor")
+
+  // TODO: FIXME so it prints out
+  val bankActions = List(Deposit(20), Withdrawal(20), Withdrawal(120), Statement)
+  forwardActor ! SendBankActions(bankActions, bankActor)
 }
