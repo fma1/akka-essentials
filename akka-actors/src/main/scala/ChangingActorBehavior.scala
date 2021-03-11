@@ -26,14 +26,14 @@ object ChangingActorBehavior extends App {
     override def receive: Receive = happyReceive
 
     def happyReceive: Receive =  {
-      case Food(VEGETABLE) => context.become(sadReceive)
+      case Food(VEGETABLE) => context.become(sadReceive, discardOld = false)
       case Food(CHOCOLATE) => ()
       case Ask(_) => sender() ! KidAccept
     }
 
     def sadReceive: Receive = {
-      case Food(VEGETABLE) => ()
-      case Food(CHOCOLATE) => context.become(happyReceive)
+      case Food(VEGETABLE) => context.become(sadReceive, discardOld = false)
+      case Food(CHOCOLATE) => context.unbecome()
       case Ask(_) => sender() ! KidReject
     }
   }
@@ -48,7 +48,12 @@ object ChangingActorBehavior extends App {
   class Mom extends Actor {
     override def receive: Receive = {
       case MomStart(kidRef) =>
+        // first 2 veggies push 2 sadReceives onto stack
+        // 2 chocolates pop them and then akka uses happyReceive again
         kidRef ! Food(VEGETABLE)
+        kidRef ! Food(VEGETABLE)
+        kidRef ! Food(CHOCOLATE)
+        // kidRef ! Food(CHOCOLATE)
         kidRef ! Ask("do you want to play?")
       case KidAccept =>
         println("Yay, my kid is happy!")
@@ -71,5 +76,23 @@ object ChangingActorBehavior extends App {
        - kid receives Food(veg) -> kid will change the receiver to sadReceive
        - kid receives Ask(play?) -> kid replies with the sadReceive handler
    * Mom receives KidReject
+   */
+
+  /*
+   * context.become() has a second parameter
+   * true means discard old handler
+   * false means push on top of old handler on the stack of handlers
+   *
+   * Food(veg) -> stack.push(sadReceive)
+   * Food(chocolate) -> stack.push(happyReceive)
+   *
+   * 1. happyReceive
+   * 2. sadReceive
+   * 3. happyReceive
+   *
+   * Akka call receiver on top of stack
+   * if empty, calls receive()
+   *
+   * To pop and use old handler, use context.unbecome()
    */
 }
