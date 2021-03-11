@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Covered 5 basic rules of Actors">
+    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" afterDir="false" />
     </list>
@@ -109,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615384975158</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed">
+      <created>1615386845019</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1615386845019</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +137,7 @@
     <MESSAGE value="Added akka-actors dependency&#10;Other maven stuff" />
     <MESSAGE value="Added ActorsIntro and did some basic stuff with instantiating Actors and passing messages" />
     <MESSAGE value="Covered 5 basic rules of Actors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Covered 5 basic rules of Actors" />
+    <MESSAGE value="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed" />
   </component>
 </project>

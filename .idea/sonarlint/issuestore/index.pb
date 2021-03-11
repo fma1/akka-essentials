@@ -25,3 +25,5 @@ C
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 \
 ,akka-actors/src/main/scala/ActorsIntro.scala,1\c\1c189174a47ee914bd385eb9583d725e4798b7f5
+b
+2akka-actors/src/main/scala/ActorCapabilities.scala,f\0\f08e0dedece96c2a6963b6564bc2e4960e3bc059
