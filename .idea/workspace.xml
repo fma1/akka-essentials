@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Refactored case classes and objects into companion objects for BankActor and CounterActor">
-      <change afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ChangingActorBehavior.scala" afterDir="false" />
+    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Added ChangingActorBehavior with interaction between a FussyKid and a Mom&#10;Fixed ActorCapabilities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/akka-actors/src/main/scala/ChangingActorBehavior.scala" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ChangingActorBehavior.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615472385001</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added ChangingActorBehavior with interaction between a FussyKid and a Mom&#10;Fixed ActorCapabilities">
+      <created>1615473315456</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1615473315456</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,6 +176,7 @@
     <MESSAGE value="Fixed typos in Props argument so bankActor and forwardActor work properly&#10;Also added actor to listen for dead letters" />
     <MESSAGE value="IntelliJ stuff" />
     <MESSAGE value="Refactored case classes and objects into companion objects for BankActor and CounterActor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored case classes and objects into companion objects for BankActor and CounterActor" />
+    <MESSAGE value="Added ChangingActorBehavior with interaction between a FussyKid and a Mom&#10;Fixed ActorCapabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ChangingActorBehavior with interaction between a FussyKid and a Mom&#10;Fixed ActorCapabilities" />
   </component>
 </project>
