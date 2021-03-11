@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="IntelliJ stuff">
+    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Refactored case classes and objects into companion objects for BankActor and CounterActor">
+      <change afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ChangingActorBehavior.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" afterDir="false" />
     </list>
@@ -50,7 +51,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ActorCapabilities">
+  <component name="RunManager" selected="Application.ChangingActorBehavior">
     <configuration name="ActorCapabilities" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="ActorCapabilities" />
       <module name="akka-actors" />
@@ -65,8 +66,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ChangingActorBehavior" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="ChangingActorBehavior" />
+      <module name="akka-actors" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChangingActorBehavior" />
         <item itemvalue="Application.ActorCapabilities" />
         <item itemvalue="Application.ActorsIntro" />
       </list>
@@ -130,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615472069769</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Refactored case classes and objects into companion objects for BankActor and CounterActor">
+      <created>1615472385001</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1615472385001</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,6 +169,7 @@
     <MESSAGE value="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed" />
     <MESSAGE value="Fixed typos in Props argument so bankActor and forwardActor work properly&#10;Also added actor to listen for dead letters" />
     <MESSAGE value="IntelliJ stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ stuff" />
+    <MESSAGE value="Refactored case classes and objects into companion objects for BankActor and CounterActor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored case classes and objects into companion objects for BankActor and CounterActor" />
   </component>
 </project>

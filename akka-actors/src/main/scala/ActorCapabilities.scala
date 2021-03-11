@@ -1,5 +1,3 @@
-import ActorCapabilities.BankActor._
-import ActorCapabilities.CounterActor._
 import akka.actor.{Actor, ActorRef, ActorSystem, DeadLetter, Props}
 
 object ActorCapabilities extends App {
@@ -91,6 +89,7 @@ object ActorCapabilities extends App {
 
   val counterActor = system.actorOf(Props[CounterActor], "counterActor")
 
+  import ActorCapabilities.CounterActor._
   (1 to 3).foreach(_ => counterActor ! INCREMENT)
   counterActor ! DECREMENT
   counterActor ! PRINT
@@ -128,6 +127,7 @@ object ActorCapabilities extends App {
     case object Statement extends BankActions
   }
 
+  import ActorCapabilities.BankActor._
   case class SendBankActions(lst: List[BankActions], actorRef: ActorRef)
 
   class ForwardActor extends Actor {
