@@ -1,3 +1,5 @@
+import ActorCapabilities.BankActor._
+import ActorCapabilities.CounterActor._
 import akka.actor.{Actor, ActorRef, ActorSystem, DeadLetter, Props}
 
 object ActorCapabilities extends App {
@@ -63,11 +65,10 @@ object ActorCapabilities extends App {
   alice ! WirelessPhoneMessage("Hi", bob)
 
   // Exercises
-  final val INCREMENT = "INCREMENT"
-  final val DECREMENT = "DECREMENT"
-  final val PRINT = "PRINT"
 
   class CounterActor extends Actor {
+    import CounterActor._
+
     private val count = 0
 
     override def receive: Receive = onMessage(count)
@@ -82,26 +83,22 @@ object ActorCapabilities extends App {
     }
   }
 
+  object CounterActor {
+    case object INCREMENT
+    case object DECREMENT
+    case object PRINT
+  }
+
   val counterActor = system.actorOf(Props[CounterActor], "counterActor")
 
-  counterActor ! INCREMENT
-  counterActor ! INCREMENT
-  counterActor ! INCREMENT
+  (1 to 3).foreach(_ => counterActor ! INCREMENT)
   counterActor ! DECREMENT
   counterActor ! PRINT
 
-  final val WITHDRAW = "WITHDRAW"
-  final val DEPOSIT = "DEPOSIT"
-  final val STATEMENT = "STATEMENT"
-
-  // Like Withdrawal | Deposit | Statement in Javascript
-  sealed trait BankActions
-  case class Withdrawal(amount: Int) extends BankActions
-  case class Deposit(amount: Int) extends BankActions
-  case object Statement extends BankActions
-
   // TODO: Using Ints instead of Float/Double due to precision, should change in future to work like Floats
   class BankActor extends Actor {
+    import BankActor._
+
     private val balance = 0
 
     override def receive: Receive = onMessage(balance)
@@ -121,6 +118,14 @@ object ActorCapabilities extends App {
       case Statement =>
         context.sender ! s"The current balance is $balance"
     }
+  }
+
+  object BankActor {
+    // Like Withdrawal | Deposit | Statement in Javascript
+    sealed trait BankActions
+    case class Withdrawal(amount: Int) extends BankActions
+    case class Deposit(amount: Int) extends BankActions
+    case object Statement extends BankActions
   }
 
   case class SendBankActions(lst: List[BankActions], actorRef: ActorRef)

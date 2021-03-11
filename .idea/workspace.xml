@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    <list default="true" id="657528ac-cd4c-4cb7-98c3-5a61fd47e265" name="Default Changelist" comment="IntelliJ stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" beforeDir="false" afterPath="$PROJECT_DIR$/akka-actors/src/main/scala/ActorCapabilities.scala" afterDir="false" />
     </list>
@@ -117,7 +116,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615386845019</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed typos in Props argument so bankActor and forwardActor work properly&#10;Also added actor to listen for dead letters">
+      <created>1615472059356</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1615472059356</updated>
+    </task>
+    <task id="LOCAL-00007" summary="IntelliJ stuff">
+      <created>1615472069769</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615472069769</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,6 +151,8 @@
     <MESSAGE value="Added ActorsIntro and did some basic stuff with instantiating Actors and passing messages" />
     <MESSAGE value="Covered 5 basic rules of Actors" />
     <MESSAGE value="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CounterActor to keep track of a simple count&#10;Added BankActor to keep track of a balance but needs to be fixed" />
+    <MESSAGE value="Fixed typos in Props argument so bankActor and forwardActor work properly&#10;Also added actor to listen for dead letters" />
+    <MESSAGE value="IntelliJ stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ stuff" />
   </component>
 </project>
