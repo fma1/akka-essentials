@@ -1,4 +1,4 @@
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+import akka.actor.{Actor, ActorRef, ActorSystem, DeadLetter, Props}
 
 object ActorCapabilities extends App {
   class SimpleActor extends Actor {
@@ -13,8 +13,17 @@ object ActorCapabilities extends App {
     }
   }
 
+  class DeadLetterListenerActor extends Actor {
+    override def receive: Receive = {
+      case deadLetter: DeadLetter =>
+        println(s"Received dead letter $deadLetter")
+    }
+  }
+
   val system: ActorSystem = ActorSystem("ActorCapabilities")
   val simpleActor: ActorRef = system.actorOf(Props[SimpleActor], "simpleActor")
+  val deadLetterListenerActor = system.actorOf(Props[DeadLetterListenerActor], "listenerActor")
+  system.eventStream.subscribe(deadLetterListenerActor, classOf[DeadLetter])
 
   simpleActor ! "hello, world"
 
@@ -110,7 +119,7 @@ object ActorCapabilities extends App {
         context.become(onMessage(balance + amount))
         context.sender ! s"Succeeded depositing $amount"
       case Statement =>
-        println(s"Balance: $balance")
+        context.sender ! s"The current balance is $balance"
     }
   }
 
@@ -121,14 +130,13 @@ object ActorCapabilities extends App {
       case SendBankActions(lst, actorRef) =>
         lst.foreach(bankAction => actorRef ! bankAction)
       case message: String => println(s"${context.self} I have received message \'$message\'")
-      case anything: AnyRef => println(anything)
+      case anything => println(anything)
     }
   }
 
-  val bankActor = system.actorOf(Props[CounterActor], "bankActor")
-  val forwardActor = system.actorOf(Props[CounterActor], "forwardActor")
+  val bankActor = system.actorOf(Props[BankActor], "bankActor")
+  val forwardActor = system.actorOf(Props[ForwardActor], "forwardActor")
 
-  // TODO: FIXME so it prints out
   val bankActions = List(Deposit(20), Withdrawal(20), Withdrawal(120), Statement)
   forwardActor ! SendBankActions(bankActions, bankActor)
 }
