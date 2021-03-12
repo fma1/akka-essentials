@@ -10,7 +10,7 @@ object ChangingActorBehavior extends App {
     val SAD = "sad"
   }
   class FussyKid extends Actor {
-    var state = HAPPY
+    var state: String = HAPPY
     override def receive: Receive = {
       case Food(VEGETABLE) =>
         state = SAD
@@ -95,4 +95,85 @@ object ChangingActorBehavior extends App {
    *
    * To pop and use old handler, use context.unbecome()
    */
+
+  /* Exercise 2 - a simplified voting system */
+  case class Vote(candidate: String)
+  case object VoteStatusRequest
+  case class VoteStatusReply(candidate: Option[String])
+  class Citizen extends Actor {
+    val candidate: Option[String] = None
+
+    override def receive: Receive = onMessage(candidate)
+
+    def onMessage(candidate: Option[String]): Receive = {
+      case Vote(newCandidate) =>
+        context.become(onMessage(Some(newCandidate)), discardOld = false)
+      case VoteStatusRequest =>
+        sender() ! VoteStatusReply(candidate)
+    }
+  }
+  case class AggregateVotes(citizens: Set[ActorRef])
+  class VoteAggregator extends Actor {
+    val requestedVotes = 0
+    val countedVotes = 0
+    val votes: Map[String, Int] = Map()
+
+    val printVotes: Map[String, Int] => Unit =
+      (votes: Map[String, Int]) =>
+        for ((candidate, numVotes) <- votes) println(s"$candidate - $numVotes")
+
+    val resetAkkaHandler: () => Unit =
+      () => context.become(onMessage(0, 0, Map()), discardOld = true)
+
+    override def receive: Receive = onMessage(requestedVotes, countedVotes, votes)
+
+    def onMessage(requestedVotes: Int, countedVotes: Int, votes: Map[String, Int]): Receive = {
+      case AggregateVotes(citizens) =>
+        context.become(onMessage(citizens.size, countedVotes, votes), discardOld = true)
+        citizens.foreach(citizen => citizen ! VoteStatusRequest)
+      case VoteStatusReply(candidate) =>
+        val countedAllVotes = requestedVotes - 1 == countedVotes
+        candidate match {
+          case Some(newCandidate) =>
+            val newVoteValue = votes.getOrElse(newCandidate, default = 0) + 1
+            val newVotes = votes + (newCandidate -> newVoteValue)
+
+            if (countedAllVotes) {
+              printVotes(newVotes)
+              resetAkkaHandler()
+            } else {
+              context.become(
+                onMessage(requestedVotes, countedVotes + 1, newVotes),
+                discardOld = true
+              )
+            }
+          case None =>
+            if (countedAllVotes) {
+              printVotes(votes)
+              resetAkkaHandler()
+            } else {
+              context.become(
+                onMessage(requestedVotes, countedVotes + 1, votes),
+                discardOld = true
+              )
+            }
+        }
+
+        if (requestedVotes - 1 == countedVotes) {
+        }
+    }
+  }
+
+  val alice = actorSystem.actorOf(Props[Citizen])
+  val bob = actorSystem.actorOf(Props[Citizen])
+  val charlie = actorSystem.actorOf(Props[Citizen])
+  val daniel = actorSystem.actorOf(Props[Citizen])
+
+  alice ! Vote("Martin")
+  bob ! Vote("Jones")
+  charlie ! Vote("Roland")
+  daniel ! Vote("Roland")
+
+  val voteAggregator = actorSystem.actorOf(Props[VoteAggregator])
+  voteAggregator ! AggregateVotes(Set[ActorRef](alice, bob, charlie, daniel))
 }
